@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br><br><br><br><br>
+<form method="get" action="{% url 'search' %}" style="display: flex; justify-content: center; align-items: center; width: 100%; padding: 10px;">
+    {% csrf_token %}
+
+    <div style="display: flex; align-items: center; width: auto;">
+        {{ form.as_p }}
+    </div>
+
+    <button type="submit" class="send-bt" style="
+        border: 1.8px solid green;
+        border-radius: 5px;
+        height: 54px; /* Label bilan teng balandlik */
+        padding: 0 15px; /* Matnnichida joylashuvi */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px; /* Font o'lchamini tenglashtirish */
+        margin-left: 10px;
+        margin-top: 26px;
+        cursor: pointer; /* Tugma ustiga kursor ko'rsatilishi */
+    ">
+        <b>Qidirish</b>
+    </button>
+</form>
+{% if query %}
+    <p class="container">Qidirilgan: '{{ query }}'</p>
+    {% if posts %}
+        <ul>
+        {% for post in posts %}
+              <div class="row g-0 bg-light position-relative container " style="border: 1.5px solid black; margin: 20px; margin-left: 65px; position: fixed;">
+                  <div class="col-md-6 mb-md-0 p-md-4">
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" class="w-100" alt="rasm">
+                    {% endif %}
+                  </div>
+                  <div class="col-md-6 p-4 ps-md-0">
+                    <h2 class="mt-0">{{ post.title }}</h2>
+                    <p>{{ post.summary }}</p>
+                    <a href="{% url 'detail_product' post.pk %}" class="btn btn-primary stretched-link" style="margin-left: 20px;">Batafsil</a>
+                  </div>
+            </div>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Natija topilmadi</p>
+    {% endif %}
+{% endif %}
+<br><br><br><br><br><br><br><br><br><br>
+
+{% endblock content %}

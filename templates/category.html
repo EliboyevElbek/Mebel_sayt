@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><br><br><br>
+     {% for mebel in posts %}
+        <div class="card mb-3 container" style="max-width: auto;">
+          <div class="row g-0">
+            <div class="col-md-4">
+              {% if mebel.image %}
+                <img src="{{ mebel.image.url }}" class="img-fluid rounded-start" alt="rasm">
+              {% endif %}
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h2 class="card-title">{{ mebel.title }}</h2>
+                <p class="card-text" style="color: black;">{{ mebel.summary }}</p>
+              </div>
+                <a href="{% url 'detail_product' mebel.pk %}" class="btn btn-primary">Batafsil</a>
+            </div>
+          </div>
+        </div>
+<br><br><br><br>
+    {% endfor %}
+{% endblock content %}

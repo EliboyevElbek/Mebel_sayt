@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><br><br>
+    <div class="card mb-3 container" style="max-width: auto;">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <div class="card-body">
+            <h2 class="card-title">{{ mebel.title }}</h2>
+          </div>
+          {% if mebel.image %}
+            <img src="{{ mebel.image.url }}" class="img-fluid rounded-start" alt="rasm">
+          {% endif %}
+        </div>
+        <div class="col-md-8">
+          <div class="card-body" style="color: black;">
+            <p class="card-text" >{{ mebel.body|safe }}</p>
+            {% if mebel.rek_price %}
+            <p class="card-text" style="opacity: 0.5;">Eski narxi: <strike>{{ mebel.rek_price }}</strike></p>
+            {% endif %}
+            <p class="card-text">Narx: {{ mebel.price }} so'm</p>
+            {% if mebel.material %}
+            <p class="card-text">Yasalgan material: {{ mebel.material }}</p>
+            {% endif %}
+            <p style="background-color: gold;">
+              <a href="{% url 'shop' %}">Barcha mebellar...</a> |
+              <a href="{% url 'buy' mebel.pk %}">Buyrutma qilish</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br><br>
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><br><br>
+    {% for post in object_list %}
+            <div class="row g-0 bg-light position-relative container " style="border: 1.5px solid black; margin: 20px; margin-left: 65px; position: fixed;">
+                  <div class="col-md-6 mb-md-0 p-md-4">
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" class="w-100" alt="rasm">
+                    {% endif %}
+                  </div>
+                  <div class="col-md-6 p-4 ps-md-0">
+                    <h2 class="mt-0">{{ post.title }}</h2>
+                    <p>{{ post.summary }}</p>
+                    <a href="{% url 'detail_product' post.pk %}" class="btn btn-primary stretched-link" style="margin-left: 20px;">Batafsil</a>
+                  </div>
+            </div>
+<!--        <div class="card mb-3 container" style="max-width: auto;">-->
+<!--          <div class="row g-0">-->
+<!--            <div class="col-md-4">-->
+<!--              {% if post.image %}-->
+<!--                <img src="{{ post.image.url }}" class="img-fluid rounded-start" alt="rasm">-->
+<!--              {% endif %}-->
+<!--            </div>-->
+<!--            <div class="col-md-8">-->
+<!--              <div class="card-body">-->
+<!--                <h2 class="card-title">{{ post.title }}</h2>-->
+<!--                <p class="card-text" style="color: black;">{{ post.summary }}</p>-->
+<!--              </div>-->
+<!--                <a href="{% url 'detail_product' post.pk %}" class="btn btn-primary">Batafsil</a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+    {% endfor %}
+{% endblock content %}

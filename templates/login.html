@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+      <div class="contact_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6">
+                  <div class="mail_sectin">
+                        <div class="alert-container">
+                            {% if error_message %}
+                                <div class="alert alert-danger" style="text-align: center;">
+                                    {{ error_message }}
+                                    <button class="close-btn" onclick="this.parentElement.style.display='none';" aria-label="Close">&times;</button>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                         <form method="POST" action="{% url 'login' %}">{% csrf_token %}
+                            <div class="mb-3">
+                                <input type="text" class="form-control" name="username" placeholder="Foydalanuvchi nomi">
+                            </div>
+                            <br>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" name="password" placeholder="Parol">
+                            </div>
+                            <br><br><br>
+                            <button type="submit" class="btn btn-primary">KIRISH</button>
+                         </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+{% endblock content %}
